@@ -5,7 +5,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-public class Test : MonoBehaviour
+public class LoadABTest : MonoBehaviour
 {
     public string bundleName = "model131_wp";
     public string assetName = "model131_wp";
@@ -14,15 +14,8 @@ public class Test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LoadBundle_Editor();
-        // LoadDependence();
-        // InstantiateBundle();
-    }
-
-    void LoadBundle_Editor(){
-        var path = AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(bundleName, assetName);
-        var go = AssetDatabase.LoadAssetAtPath<GameObject>(path[0]);
-        Instantiate(go);
+        LoadDependence();
+        InstantiateBundle();
     }
 
     private void LoadDependence()
@@ -43,12 +36,5 @@ public class Test : MonoBehaviour
     {
         assetBundle = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, bundleName));
         Instantiate(assetBundle.LoadAsset(assetName));
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
